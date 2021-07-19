@@ -44,7 +44,7 @@
 		00E356EE1AD99517003FC87E /* rnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* rnTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rnTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* rn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Task Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = rn/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = rn/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = rn/Images.xcassets; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 				7F7879398481606CDB633B05 /* Pods-rn-tvOSTests.debug.xcconfig */,
 				7A7E01FD098C4E123FDC46EB /* Pods-rn-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -190,7 +189,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* rn.app */,
+				13B07F961A680F5B00A75B9A /* Task Tracker.app */,
 				00E356EE1AD99517003FC87E /* rnTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* rn-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* rn-tvOSTests.xctest */,
@@ -239,7 +238,7 @@
 			);
 			name = rn;
 			productName = rn;
-			productReference = 13B07F961A680F5B00A75B9A /* rn.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Task Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* rn-tvOS */ = {
@@ -729,7 +728,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = rn;
+				PRODUCT_NAME = "Task Tracker";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -751,7 +750,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = rn;
+				PRODUCT_NAME = "Task Tracker";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
