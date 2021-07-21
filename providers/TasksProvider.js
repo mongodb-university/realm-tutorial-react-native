@@ -15,12 +15,19 @@ const TasksProvider = ({ children, projectPartition }) => {
   const realmRef = useRef(null);
 
   useEffect(() => {
+    // enable offline-first syncing changes in the background
+    const OpenRealmBehaviorConfiguration = {
+      type: 'openImmediately',
+    };
     const config = {
       sync: {
         user: user,
         partitionValue: projectPartition,
+        newRealmFileBehavior: OpenRealmBehaviorConfiguration,
+        existingRealmFileBehavior: OpenRealmBehaviorConfiguration,
       },
     };
+
     // open a realm for this particular project
     Realm.open(config).then((projectRealm) => {
       realmRef.current = projectRealm;
