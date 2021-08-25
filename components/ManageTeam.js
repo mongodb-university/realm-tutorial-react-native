@@ -66,11 +66,16 @@ export function ManageTeam() {
       </View>
       {teamMemberList.map((member) => (
         <ListItem
-          title={member.name}
           onPress={() => openDeleteDialogue(member)}
           bottomDivider
           key={member.name}
-        />
+        >
+          <ListItem.Content>
+              <ListItem.Title>
+                {member.name}
+              </ListItem.Title>
+          </ListItem.Content>
+        </ListItem>
       ))}
 
       <Text h4> Add member:</Text>
