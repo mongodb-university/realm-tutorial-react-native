@@ -21,6 +21,7 @@ const TasksProvider = ({ children, projectPartition }) => {
       type: 'openImmediately',
     };
     const config = {
+      schema: [Task.schema],
       sync: {
         user: user,
         partitionValue: projectPartition,
