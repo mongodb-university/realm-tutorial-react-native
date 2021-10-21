@@ -1,9 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import Realm from "realm";
-import { getRealmApp } from "../getRealmApp";
-
-// Access the Realm App.
-const app = getRealmApp();
+import app from "../realmApp";
 
 // Create a new Context object that will be provided to descendants of
 // the AuthProvider.
