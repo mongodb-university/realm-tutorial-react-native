@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
   // The signUp function takes an email and password and uses the
   // emailPassword authentication provider to register the user.
   const signUp = async (email, password) => {
-    await app.emailPasswordAuth.registerUser(email, password);
+    await app.emailPasswordAuth.registerUser({ email, password });
   };
 
   // The signOut function calls the logOut function on the currently
