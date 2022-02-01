@@ -15,6 +15,8 @@ export function ManageTeam() {
   const getTeam = async () => {
     try {
       // TODO: Call the getMyTeamMembers Realm function and pass the result to setTeamMemberList().
+      const teamMembers = await user.functions.getMyTeamMembers([]);
+      setTeamMemberList(teamMembers);
     } catch (err) {
       Alert.alert("An error occurred while getting team members", err);
     }
@@ -26,6 +28,8 @@ export function ManageTeam() {
     try {
       // TODO: Call the addTeamMember Realm function with the given email,
       // then call getTeam() to refresh the list.
+      await user.functions.addTeamMember(newTeamMember);
+      getTeam();
     } catch (err) {
       Alert.alert("An error occurred while adding a team member", err.message);
     }
@@ -37,6 +41,8 @@ export function ManageTeam() {
     try {
       // TODO: Call the removeTeamMember Realm function with the given email,
       // then call getTeam() to refresh the list.
+      await user.functions.removeTeamMember(email);
+      getTeam();
     } catch (err) {
       Alert.alert("An error occurred while removing a team member", err);
     }

@@ -15,6 +15,7 @@ import { Logout } from "./components/Logout";
 const Stack = createStackNavigator();
 
 const App = () => {
+
   return (
     <AuthProvider>
       <NavigationContainer>

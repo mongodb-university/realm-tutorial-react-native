@@ -27,12 +27,43 @@ const AuthProvider = ({ children }) => {
     // TODO: Open the user realm, which contains at most one user custom data object
     // for the logged-in user.
 
+  //open a realm
+
+  const config = {
+    sync: {
+      user,
+      partitionValue: `user=${user.id}`,
+    },
+  };
+  
+  // Open a realm with the logged in user's partition value in order
+  // to get the projects that the logged in user is a member of
+  Realm.open(config).then((userRealm) => {
+    realmRef.current = userRealm;
+    const users = userRealm.objects("User");
+  
+    users.addListener(() => {
+      // The user custom data object may not have been loaded on
+      // the server side yet when a user is first registered.
+      if (users.length === 0) {
+        setProjectData([myProject]);
+      } else {
+        const { memberOf } = users[0];
+        setProjectData([...memberOf]);
+      }
+    });
+  });
+  
+
     // TODO: Return a cleanup function that closes the user realm.
   }, [user]);
 
   // The signIn function takes an email and password and uses the
   // emailPassword authentication provider to log in.
   const signIn = async (email, password) => {
+    const creds = Realm.Credentials.emailPassword(email, password);
+    const newUser = await app.logIn(creds);
+    setUser(newUser);
     // TODO: Pass the email and password to Realm's email password provider to log in.
     // Use the setUser() function to set the logged-in user.
   };
@@ -40,6 +71,7 @@ const AuthProvider = ({ children }) => {
   // The signUp function takes an email and password and uses the
   // emailPassword authentication provider to register the user.
   const signUp = async (email, password) => {
+    await app.emailPasswordAuth.registerUser({ email, password });
     // TODO: Pass the email and password to Realm's email password provider to register the user.
     // Registering only registers and does not log in.
   };
@@ -52,7 +84,10 @@ const AuthProvider = ({ children }) => {
       return;
     }
     // TODO: Log out the current user and use the setUser() function to set the current user to null.
+    user.logOut();
+    setUser(null);
   };
+
 
   return (
     <AuthContext.Provider
@@ -78,5 +113,9 @@ const useAuth = () => {
   }
   return auth;
 };
+
+
+
+
 
 export { AuthProvider, useAuth };

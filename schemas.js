@@ -23,6 +23,17 @@ class Task {
   static STATUS_IN_PROGRESS = "InProgress";
   static STATUS_COMPLETE = "Complete";
   // TODO: implement schema
+
+  static schema = {
+    name: "Task",
+    properties: {
+      _id: "objectId",
+      name: "string",
+      status: "string",
+    },
+    primaryKey: "_id",
+  };
+  
 }
 
 export { Task };

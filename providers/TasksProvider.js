@@ -34,6 +34,16 @@ const TasksProvider = ({ children, projectPartition }) => {
     // sorted by name, and attach a listener to the Task collection. When the
     // listener fires, use the setTasks() function to apply the updated Tasks
     // list to the state.
+    // open a realm for this particular project
+    Realm.open(config).then((projectRealm) => {
+      realmRef.current = projectRealm;
+      const syncTasks = projectRealm.objects("Task");
+      let sortedTasks = syncTasks.sorted("name");
+      setTasks([...sortedTasks]);
+      sortedTasks.addListener(() => {
+        setTasks([...sortedTasks]);
+      });
+    });
 
     return () => {
       // cleanup function
@@ -41,6 +51,8 @@ const TasksProvider = ({ children, projectPartition }) => {
       if (projectRealm) {
         // TODO: close the project realm and reset the realmRef's
         // current value to null.
+        projectRealm.close();
+        realmRef.current = null;
         setTasks([]);
       }
     };
@@ -49,6 +61,16 @@ const TasksProvider = ({ children, projectPartition }) => {
   const createTask = (newTaskName) => {
     const projectRealm = realmRef.current;
     // TODO: Create the Task in a write block.
+    projectRealm.write(() => {
+      // Create a new task in the same partition -- that is, in the same project.
+      projectRealm.create(
+        "Task",
+        new Task({
+          name: newTaskName || "New Task",
+          partition: projectPartition,
+        })
+      );
+    });
   };
 
   const setTaskStatus = (task, status) => {
@@ -66,12 +88,19 @@ const TasksProvider = ({ children, projectPartition }) => {
     const projectRealm = realmRef.current;
 
     // TODO: In a write block, update the Task's status.
+    projectRealm.write(() => {
+      task.status = status;
+    });
   };
 
   // Define the function for deleting a task.
   const deleteTask = (task) => {
     const projectRealm = realmRef.current;
     // TODO: In a write block, delete the Task.
+    projectRealm.write(() => {
+      projectRealm.delete(task);
+      setTasks([...projectRealm.objects("Task").sorted("name")]);
+    });
   };
 
   // Render the children within the TaskContext's provider. The value contains
