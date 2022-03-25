@@ -1,6 +1,6 @@
 # Realm React Native Tutorial
 
-Follow along at https://docs.mongodb.com/realm/tutorial/react-native/
+Follow along at https://www.mongodb.com/docs/realm/tutorial/react-native/
 
 ## Troubleshooting
 
@@ -17,9 +17,8 @@ schema as you develop your app.
 ## Issues & Pull Requests
 
 If you find an issue or have a suggestion, please let us know using the feedback
-widget on the [docs site](http://docs.mongodb.com/realm/tutorial).
+widget on the [docs site](http://www.mongodb.com/docs/realm/tutorial).
 
 This repo is automatically derived from our main docs repo. If you'd like to
 submit a pull request -- thanks! -- please feel free to do so at
 https://github.com/mongodb/docs-realm/ (see the tutorial/ subdirectory).
-
