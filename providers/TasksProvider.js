@@ -20,7 +20,6 @@ const TasksProvider = ({ children, projectPartition }) => {
     const OpenRealmBehaviorConfiguration = {
       type: 'openImmediately',
     };
-    // :code-block-start: open-project-realm
     const config = {
       schema: [Task.schema],
       sync: {
@@ -30,7 +29,6 @@ const TasksProvider = ({ children, projectPartition }) => {
         existingRealmFileBehavior: OpenRealmBehaviorConfiguration,
       },
     };
-    // :state-start: final
     // open a realm for this particular project
     Realm.open(config).then((projectRealm) => {
       realmRef.current = projectRealm;
@@ -42,37 +40,20 @@ const TasksProvider = ({ children, projectPartition }) => {
         setTasks([...sortedTasks]);
       });
     });
-    // :state-end: :state-uncomment-start: start
-    //// TODO: Open the project realm with the given configuration and store
-    //// it in the realmRef. Once opened, fetch the Task objects in the realm,
-    //// sorted by name, and attach a listener to the Task collection. When the
-    //// listener fires, use the setTasks() function to apply the updated Tasks
-    //// list to the state.
-    // :state-uncomment-end:
-    // :code-block-end:
 
-    // :code-block-start: clean-up
     return () => {
       // cleanup function
       const projectRealm = realmRef.current;
       if (projectRealm) {
-        // :state-start: final
         projectRealm.close();
         realmRef.current = null;
-        // :state-end: :state-uncomment-start: start
-        //// TODO: close the project realm and reset the realmRef's
-        //// current value to null.
-        // :state-uncomment-end:
         setTasks([]);
       }
     };
-    // :code-block-end:
   }, [user, projectPartition]);
 
-  // :code-block-start: create-task
   const createTask = (newTaskName) => {
     const projectRealm = realmRef.current;
-    // :state-start: final
     projectRealm.write(() => {
       // Create a new task in the same partition -- that is, in the same project.
       projectRealm.create(
@@ -83,13 +64,8 @@ const TasksProvider = ({ children, projectPartition }) => {
         })
       );
     });
-    // :state-end: :state-uncomment-start: start
-    //// TODO: Create the Task in a write block.
-    // :state-uncomment-end:
   };
-  // :code-block-end:
 
-  // :code-block-start: set-task-status
   const setTaskStatus = (task, status) => {
     // One advantage of centralizing the realm functionality in this provider is
     // that we can check to make sure a valid status was passed in here.
@@ -104,30 +80,19 @@ const TasksProvider = ({ children, projectPartition }) => {
     }
     const projectRealm = realmRef.current;
 
-    // :state-start: final
     projectRealm.write(() => {
       task.status = status;
     });
-    // :state-end: :state-uncomment-start: start
-    //// TODO: In a write block, update the Task's status.
-    // :state-uncomment-end:
   };
-  // :code-block-end:
 
-  // :code-block-start: delete-task
   // Define the function for deleting a task.
   const deleteTask = (task) => {
     const projectRealm = realmRef.current;
-    // :state-start: final
     projectRealm.write(() => {
       projectRealm.delete(task);
       setTasks([...projectRealm.objects("Task").sorted("name")]);
     });
-    // :state-end: :state-uncomment-start: start
-    //// TODO: In a write block, delete the Task.
-    // :state-uncomment-end:
   };
-  // :code-block-end:
 
   // Render the children within the TaskContext's provider. The value contains
   // everything that should be made available to descendants that use the

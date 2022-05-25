@@ -23,8 +23,6 @@ export function TaskItem({ task }) {
   // move the task into that status. Rather than creating a generic method to
   // avoid repetition, we split each status to separate each case in the code
   // below for demonstration purposes.
-  // :code-block-start: define-task-status-actions
-  // :state-start: final
   if (task.status !== "" && task.status !== Task.STATUS_OPEN) {
     actions.push({
       title: "Mark Open",
@@ -49,10 +47,6 @@ export function TaskItem({ task }) {
       },
     });
   }
-  // :state-end: :state-uncomment-start: start
-  //// TODO
-  // :state-uncomment-end:
-  // :code-block-end:
 
   return (
     <>
