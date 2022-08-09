@@ -10,9 +10,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/stack": "^5.14.9",
     "@react-navigation/native": "^5.9.8",
-    "@react-navigation/stack": "^5.9.2",
     "react": "16.13.1",
     "react-native": "0.69.1",
     "react-native-elements": "^2.3.2",
