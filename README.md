@@ -1,3 +1,6 @@
+Archived -- please see https://www.mongodb.com/docs/atlas/app-services/tutorial/react-native/ for the new tutorial!
+
+
 # Realm React Native Tutorial
 
 Follow along at https://www.mongodb.com/docs/realm/tutorial/react-native/
