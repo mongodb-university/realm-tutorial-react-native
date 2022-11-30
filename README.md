@@ -1,6 +1,7 @@
 # ⚠️ Archived
 
-*Please see https://www.mongodb.com/docs/atlas/app-services/tutorial/react-native/ for the new tutorial!*
+**Please see https://www.mongodb.com/docs/atlas/app-services/tutorial/react-native/ for the new tutorial!**
+
 Original README below:
 
 ## Troubleshooting
